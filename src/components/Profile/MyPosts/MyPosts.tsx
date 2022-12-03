@@ -9,8 +9,8 @@ const MyPosts = () => {
             <div>
                 New post
             </div>
-            <Post/>
-            <Post/>
+            <Post message={'Hi? bro'}/>
+            <Post message={'Hoe are you?'}/>
         </div>
     );
 };
