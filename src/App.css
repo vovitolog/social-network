@@ -47,26 +47,3 @@
             'nav content';
     width: 1200px;
 }
-
-.header {
-    grid-area: header;
-    background-color: #61dafb;
-}
-
-.header img {
-    width: 60px;
-}
-
-.nav {
-    grid-area: nav;
-    background-color: blueviolet;
-}
-
-.content {
-    grid-area: content;
-    background-color: darkcyan;
-}
-
-.avatar {
-    width: 20px;
-}
