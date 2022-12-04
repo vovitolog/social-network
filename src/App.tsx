@@ -19,7 +19,7 @@ type AppProps = {
     messages: MessageProps[]
 }
 
-function App(props: AppProps) {
+function App(props: any) {
 
     return (
         <BrowserRouter>
@@ -27,11 +27,11 @@ function App(props: AppProps) {
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route render={() => <Profile posts={props.posts}/>}
+                    <Route render={() => <Profile state={props.state.profilePage}/>}
                            path={'/profile'}
                     />
                     <Route
-                        render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}
+                        render={() => <Dialogs state={props.state.dialogsPage}/>}
                         path={'/dialogs'}
                     />
                     <Route component={Music} path={'/music'}/>
