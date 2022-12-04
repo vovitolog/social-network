@@ -9,8 +9,17 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
+import {PostProps} from "./components/Profile/MyPosts/Post/Post";
+import {DialogItemProps} from "./components/Dialogs/DialogItem/DialogItem";
+import {MessageProps} from "./components/Dialogs/Message/Message";
 
-function App() {
+type AppProps = {
+    posts: PostProps[]
+    dialogs: DialogItemProps[]
+    messages: MessageProps[]
+}
+
+function App(props: AppProps) {
 
     return (
         <BrowserRouter>
@@ -18,9 +27,14 @@ function App() {
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route component={Profile} path={'/profile'}/>
-                    <Route component={Dialogs} path={'/dialogs'}/>
-                    <Route component={Music}  path={'/music'}/>
+                    <Route render={() => <Profile posts={props.posts}/>}
+                           path={'/profile'}
+                    />
+                    <Route
+                        render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}
+                        path={'/dialogs'}
+                    />
+                    <Route component={Music} path={'/music'}/>
                     <Route component={News} path={'/news'}/>
                     <Route component={Settings} path={'/settings'}/>
                 </div>

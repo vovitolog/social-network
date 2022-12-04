@@ -2,20 +2,20 @@ import React from 'react';
 import classes from './MyPosts.module.css'
 import Post, {PostProps} from "./Post/Post";
 
-let posts: PostProps[] = [
-    {id: 1, message: 'Hi, bro'},
-    {id: 2, message: 'How are you?  '},
-]
+type MyPostsProps = {
+    posts: PostProps[];
+}
 
-let postsElements = posts.map(p=><Post id={p.id} message={p.message} key={p.id}/>)
+const MyPosts = (props: MyPostsProps) => {
 
-const MyPosts = () => {
+    let postsElements = props.posts.map(p => <Post id={p.id} message={p.message} key={p.id}/>)
+
     return (
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
             <div>
                 New post
-               <div> <textarea></textarea></div>
+                <div><textarea></textarea></div>
                 <div>
                     <button>Add Post</button>
                 </div>
