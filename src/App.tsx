@@ -20,7 +20,7 @@ function App() {
                 <div className={'app-wrapper-content'}>
                     <Route component={Profile} path={'/profile'}/>
                     <Route component={Dialogs} path={'/dialogs'}/>
-                    <Route component={Music} path={'/music'}/>
+                    <Route component={Music}  path={'/music'}/>
                     <Route component={News} path={'/news'}/>
                     <Route component={Settings} path={'/settings'}/>
                 </div>

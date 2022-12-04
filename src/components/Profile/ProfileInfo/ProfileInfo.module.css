@@ -1,0 +1,17 @@
+.wallpaper {
+    height: 200px;
+    width: 900px;
+    object-fit: cover;
+}
+
+.avatar {
+    width: 20px;
+}
+
+.item{
+    font-weight: bold;
+}
+
+.descriptionBlock {
+    padding: 10px;
+}
