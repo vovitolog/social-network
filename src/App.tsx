@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Router} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 
 import './App.css';
 import Header from "./components/Header/Header";
@@ -22,24 +22,22 @@ type AppProps = {
 function App(props: any) {
 
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className={'app-wrapper-content'}>
-                    <Route render={() => <Profile state={props.state.profilePage}/>}
-                           path={'/profile'}
-                    />
-                    <Route
-                        render={() => <Dialogs state={props.state.dialogsPage}/>}
-                        path={'/dialogs'}
-                    />
-                    <Route component={Music} path={'/music'}/>
-                    <Route component={News} path={'/news'}/>
-                    <Route component={Settings} path={'/settings'}/>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className={'app-wrapper-content'}>
+                <Route render={() => <Profile state={props.state.profilePage}/>}
+                       path={'/profile'}
+                />
+                <Route
+                    render={() => <Dialogs state={props.state.dialogsPage}/>}
+                    path={'/dialogs'}
+                />
+                <Route component={Music} path={'/music'}/>
+                <Route component={News} path={'/news'}/>
+                <Route component={Settings} path={'/settings'}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 

@@ -6,6 +6,7 @@ import {PostProps} from "./components/Profile/MyPosts/Post/Post";
 import {DialogItemProps} from "./components/Dialogs/DialogItem/DialogItem";
 import {MessageProps} from "./components/Dialogs/Message/Message";
 import state from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
 
 let posts: PostProps[] = [
     {id: 1, message: 'Hi, bro'},
@@ -28,8 +29,10 @@ let messages: MessageProps[] = [
 
 
 ReactDOM.render(
-    <App
-        state={state}
-    />,
+    <BrowserRouter>
+        <App
+            state={state}
+        />
+    </BrowserRouter>,
     document.getElementById('root')
 );
