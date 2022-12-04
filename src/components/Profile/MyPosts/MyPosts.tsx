@@ -6,7 +6,7 @@ type MyPostsProps = {
     posts: PostProps[];
 }
 
-const MyPosts = (props: MyPostsProps) => {
+const MyPosts: React.FC<MyPostsProps> = (props) => {
 
     let postsElements = props.posts.map(p => <Post id={p.id} message={p.message} key={p.id}/>)
 

@@ -1,4 +1,33 @@
-let state = {
+type PostType = {
+    id: number
+    message: string
+}
+
+type DialogType = {
+    id: number
+    name: string
+}
+
+type MessageType = {
+    id: number
+    message: string
+}
+
+type ProfilePageType = {
+    posts: PostType[]
+}
+
+type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
+
+type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogPageType
+}
+
+let state: RootStateType = {
     profilePage: {
         posts:
             [
@@ -22,13 +51,13 @@ let state = {
                 {id: 3, message: 'Bye'},
             ],
     },
-    sidebar: {
-        friends: [
-            {id: 1, name: 'John'},
-            {id: 2, name: 'Steve'},
-            {id: 3, name: 'Brady'},
-        ]
-    }
+    // sidebar: {
+    //     friends: [
+    //         {id: 1, name: 'John'},
+    //         {id: 2, name: 'Steve'},
+    //         {id: 3, name: 'Brady'},
+    //     ]
+    // }
 }
 
 export default state;
