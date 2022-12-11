@@ -1,4 +1,6 @@
-type PostType = {
+import {rerenderEntireTree} from "../render";
+
+export type PostType = {
     id: number
     message: string
 }
@@ -22,7 +24,7 @@ type DialogPageType = {
     messages: Array<MessageType>
 }
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
@@ -63,6 +65,7 @@ let state: RootStateType = {
 export const addPost = (newPost: string) => {
     const postToAdd: PostType = {id: 3, message: newPost}
     state.profilePage.posts.push(postToAdd);
+    rerenderEntireTree(state);
 }
 
 export default state;

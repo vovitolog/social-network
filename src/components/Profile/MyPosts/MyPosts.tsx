@@ -16,8 +16,10 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
 
     const addPostHandler = () => {
 
-        if (inputText.current)
-            props.addPost(inputText.current?.value);
+        if (inputText.current) {
+            props.addPost(inputText.current?.value)
+            inputText.current.value = '';
+        }
     }
 
     return (
