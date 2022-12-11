@@ -16,7 +16,12 @@ function App(props: any) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}
+                <Route render={() =>
+                    <Profile
+                        state={props.state.profilePage}
+                        addPost={props.addPost}
+                        updateNewPostText={props.updateNewPostText}
+                    />}
                        path={'/profile'}
                 />
                 <Route

@@ -17,6 +17,7 @@ type MessageType = {
 
 type ProfilePageType = {
     posts: PostType[]
+    newPostText: string
 }
 
 type DialogPageType = {
@@ -36,6 +37,7 @@ let state: RootStateType = {
                 {id: 1, message: 'Hi, bro'},
                 {id: 2, message: 'How are you?  '},
             ],
+        newPostText: 'It-kamasutra'
     },
     dialogsPage: {
         dialogs:
@@ -63,8 +65,13 @@ let state: RootStateType = {
 }
 
 export const addPost = (newPost: string) => {
-    const postToAdd: PostType = {id: 3, message: newPost}
+    const postToAdd: PostType = {id: new Date().getTime(), message: newPost}
     state.profilePage.posts.push(postToAdd);
+    rerenderEntireTree(state);
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 

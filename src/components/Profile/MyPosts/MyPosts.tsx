@@ -1,10 +1,12 @@
-import React, {LegacyRef, TextareaHTMLAttributes, useRef} from 'react';
+import React, {ChangeEvent, useRef} from 'react';
 import classes from './MyPosts.module.css'
 import Post, {PostProps} from "./Post/Post";
 
 type MyPostsProps = {
     posts: PostProps[];
     addPost: (newPost: string) => void
+    updateNewPostText: (newText: string) => void
+    newPostText: string
 }
 
 const MyPosts: React.FC<MyPostsProps> = (props) => {
@@ -15,11 +17,12 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
     const inputText = useRef<HTMLTextAreaElement>(null);
 
     const addPostHandler = () => {
+            props.addPost(props.newPostText)
+            props.updateNewPostText('')
+    }
 
-        if (inputText.current) {
-            props.addPost(inputText.current?.value)
-            inputText.current.value = '';
-        }
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -27,7 +30,12 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
             <h3>My posts</h3>
             <div>
                 New post
-                <div><textarea ref={inputText}></textarea></div>
+                <div><textarea
+                    ref={inputText}
+                    value={props.newPostText}
+                    onChange={onPostChange}
+                />
+                </div>
                 <div>
                     <button onClick={addPostHandler}>Add Post</button>
                 </div>
