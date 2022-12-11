@@ -4,6 +4,7 @@ import Post, {PostProps} from "./Post/Post";
 
 type MyPostsProps = {
     posts: PostProps[];
+    addPost: (newPost: string) => void
 }
 
 const MyPosts: React.FC<MyPostsProps> = (props) => {
@@ -13,8 +14,10 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
     //const inputText = React.createRef<HTMLTextAreaElement>();
     const inputText = useRef<HTMLTextAreaElement>(null);
 
-    const buttonHandler = () => {
-        alert(inputText.current?.value)
+    const addPostHandler = () => {
+
+        if (inputText.current)
+            props.addPost(inputText.current?.value);
     }
 
     return (
@@ -24,7 +27,7 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
                 New post
                 <div><textarea ref={inputText}></textarea></div>
                 <div>
-                    <button onClick={buttonHandler}>Add Post</button>
+                    <button onClick={addPostHandler}>Add Post</button>
                 </div>
             </div>
             {postsElements}

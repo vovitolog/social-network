@@ -9,7 +9,6 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 
-
 function App(props: any) {
 
     return (
@@ -17,7 +16,7 @@ function App(props: any) {
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route render={() => <Profile state={props.state.profilePage}/>}
+                <Route render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}
                        path={'/profile'}
                 />
                 <Route

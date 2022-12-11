@@ -60,4 +60,9 @@ let state: RootStateType = {
     // }
 }
 
+export const addPost = (newPost: string) => {
+    const postToAdd: PostType = {id: 3, message: newPost}
+    state.profilePage.posts.push(postToAdd);
+}
+
 export default state;
