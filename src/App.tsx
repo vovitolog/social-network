@@ -8,9 +8,14 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
+import { StoreType } from './redux/state';
 
-function App(props: any) {
+type PropsType = {
+    store: StoreType
+}
 
+const App: React.FC<PropsType> = (props) => {
+    const state = props.store.getState();
     return (
         <div className="app-wrapper">
             <Header/>
@@ -18,14 +23,14 @@ function App(props: any) {
             <div className={'app-wrapper-content'}>
                 <Route render={() =>
                     <Profile
-                        state={props.state.profilePage}
-                        addPost={props.addPost}
-                        updateNewPostText={props.updateNewPostText}
+                        state={state.profilePage}
+                        addPost={props.store.addPost.bind(props.store)}
+                        updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                     />}
                        path={'/profile'}
                 />
                 <Route
-                    render={() => <Dialogs state={props.state.dialogsPage}/>}
+                    render={() => <Dialogs state={state.dialogsPage}/>}
                     path={'/dialogs'}
                 />
                 <Route component={Music} path={'/music'}/>

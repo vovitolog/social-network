@@ -17,8 +17,8 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
     const inputText = useRef<HTMLTextAreaElement>(null);
 
     const addPostHandler = () => {
-            props.addPost(props.newPostText)
-            props.updateNewPostText('')
+        props.addPost(props.newPostText)
+        props.updateNewPostText('')
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
