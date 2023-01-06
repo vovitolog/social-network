@@ -32,12 +32,16 @@ let store: StoreType = {
         //     ]
         // }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber(state: RootStateType) {
         console.log('State was changed')
     },
+    getState() {
+        return this._state;
+    },
+    subscribe(observer: (state: RootStateType) => void) {
+        this._callSubscriber = observer;
+    },
+
     addPost() {
         const postToAdd: PostType = {id: new Date().getTime(), message: this._state.profilePage.newPostText}
         this._state.profilePage.posts.push(postToAdd);
@@ -48,14 +52,31 @@ let store: StoreType = {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
-    subscribe(observer: (state: RootStateType) => void) {
-        this._callSubscriber = observer;
-    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+
+            const postToAdd: PostType = {id: new Date().getTime(), message: this._state.profilePage.newPostText}
+            this._state.profilePage.posts.push(postToAdd);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
 }
 
-// let _callSubscriber = (state: RootStateType) => {
-//     console.log('State was changed')
-// }
+type AddPostActionType = {
+    type: "ADD-POST",
+    postText: string
+}
+
+type UpdateNewPostTextType = {
+    type: "UPDATE-NEW-POST-TEXT",
+    newText: string
+}
+
+export type actionsTypes = AddPostActionType | UpdateNewPostTextType;
 
 export type StoreType = {
     _state: RootStateType
@@ -63,7 +84,8 @@ export type StoreType = {
     addPost: () => void
     _callSubscriber: (state: RootStateType) => void
     subscribe: (callback: (state: RootStateType) => void) => void
-    getState: ()=> RootStateType
+    getState: () => RootStateType
+    dispatch: (action: actionsTypes) => void
 }
 
 export type PostType = {
@@ -95,55 +117,5 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }
-
-// let state: RootStateType = {
-//     profilePage: {
-//         posts:
-//             [
-//                 {id: 1, message: 'Hi, bro'},
-//                 {id: 2, message: 'How are you?  '},
-//             ],
-//         newPostText: 'It-kamasutra'
-//     },
-//     dialogsPage: {
-//         dialogs:
-//             [
-//                 {id: 1, name: 'John'},
-//                 {id: 2, name: 'Steve'},
-//                 {id: 3, name: 'Brady'},
-//                 {id: 4, name: 'Traver'},
-//                 {id: 5, name: 'Stacy'},
-//             ],
-//         messages:
-//             [
-//                 {id: 1, message: 'Hi'},
-//                 {id: 2, message: 'How are You'},
-//                 {id: 3, message: 'Bye'},
-//             ],
-//     },
-//     // sidebar: {
-//     //     friends: [
-//     //         {id: 1, name: 'John'},
-//     //         {id: 2, name: 'Steve'},
-//     //         {id: 3, name: 'Brady'},
-//     //     ]
-//     // }
-// }
-
-// export const addPost = (newPost: string) => {
-//     const postToAdd: PostType = {id: new Date().getTime(), message: newPost}
-//     state.profilePage.posts.push(postToAdd);
-//     state.profilePage.newPostText = '';
-//     onChange(state);
-// }
-
-// export const updateNewPostText = (newText: string) => {
-//     state.profilePage.newPostText = newText;
-//     onChange(state);
-// }
-
-// export const subscribe = (observer: (state: RootStateType) => void) => {
-//     onChange = observer;
-// };
 
 export default store;

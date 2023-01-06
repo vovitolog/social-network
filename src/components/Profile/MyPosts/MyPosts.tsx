@@ -22,6 +22,7 @@ const MyPosts: React.FC<MyPostsProps> = (props) => {
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        debugger
         props.updateNewPostText(e.currentTarget.value)
     }
 
